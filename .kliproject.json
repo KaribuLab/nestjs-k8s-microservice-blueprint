@@ -169,6 +169,10 @@
     {
       "name": "Install Helm skill",
       "command": "pnpx skills add KaribuLab/skills -y --skill helm-charts"
+    },
+    {
+      "name": "Install Owasp Security Check skill",
+      "command": "pnpx skills add sergiodxa/agent-skills -y --skill owasp-security-check"
     }
   ]
 }
