@@ -1,14 +1,19 @@
-namespace: {{kubernetes_namespace}}
-own: {{kubernetes_owner}}
-app: {{kubernetes_app}}
+namespace: {{.Inputs.kubernetes_namespace}}
+own: {{.Inputs.kubernetes_owner}}
+app: {{.Inputs.kubernetes_app}}
 
-serviceName: {{service_name}}
-serviceAccountName: {{service_account_name}}
-gatewayName: {{kubernetes_gateway_name}}
+serviceName: {{.Inputs.service_name}}
+serviceAccountName: {{.Inputs.service_account_name}}
+gatewayName: {{.Inputs.gateway_name}}
 port: 3000
 requiredEnvVariable: DELETE_ME
 
-imageName: {{image_name}}
+imageName: {{.Inputs.image_name}}
+imageTag: latest
+
+googleCloud:
+  domains:
+    - "{{.Inputs.service_name}}.example.com"
 
 minReplicas: 1
 maxReplicas: 1

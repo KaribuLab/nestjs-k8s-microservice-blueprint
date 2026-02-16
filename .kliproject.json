@@ -9,12 +9,12 @@
           "destination": "helm/templates/deployment.yaml"
         },
         {
-          "source": "helm/templates/healtcheck-policy.yaml",
-          "destination": "helm/templates/healtcheck-policy.yaml"
+          "source": "helm/templates/healthcheck-policy.yaml",
+          "destination": "helm/templates/healthcheck-policy.yaml"
         },
         {
-          "source": "helm/templates/horizontal-autoscaller.yaml",
-          "destination": "helm/templates/horizontal-autoscaller.yaml"
+          "source": "helm/templates/horizontal-autoscaler.yaml",
+          "destination": "helm/templates/horizontal-autoscaler.yaml"
         },
         {
           "source": "helm/templates/http-route.yaml",
@@ -49,10 +49,6 @@
         {
           "source": "src/app.module.ts",
           "destination": "src/app.module.ts"
-        },
-        {
-          "source": "src/entrypoint.ts",
-          "destination": "src/entrypoint.ts"
         },
         {
           "source": "src/health/health.module.ts",
@@ -125,7 +121,7 @@
     },
     {
       "name": "gateway_name",
-      "description": "Image tag",
+      "description": "Gateway name",
       "type": "string"
     },
     {
@@ -152,27 +148,11 @@
   "posthooks": [
     {
       "name": "Helm syntax check",
-      "command": "helm template ."
+      "command": "helm template ./helm"
     },
     {
       "name": "Install pnpm dependencies",
       "command": "pnpm install"
-    },
-    {
-      "name": "Install NestJS microservices skill",
-      "command": "pnpx skills add KaribuLab/skills -y --skill nestjs-microservices"
-    },
-    {
-      "name": "Install Screaming Architecture skill",
-      "command": "pnpx skills add KaribuLab/skills -y --skill screaming-architecture"
-    },
-    {
-      "name": "Install Helm skill",
-      "command": "pnpx skills add KaribuLab/skills -y --skill helm-charts"
-    },
-    {
-      "name": "Install Owasp Security Check skill",
-      "command": "pnpx skills add sergiodxa/agent-skills -y --skill owasp-security-check"
     }
   ]
 }

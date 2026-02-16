@@ -1,7 +1,7 @@
 apiVersion: v2
-name: {{service_name}}
-description: Chart para inicializar el servicio de {{service_name}}
-appVersion: "Primera version de servicio {{service_name}}"
+name: "{{.Inputs.service_name}}"
+description: "Chart para inicializar el servicio de {{.Inputs.service_name}}"
+appVersion: "Primera version de servicio {{.Inputs.service_name}}"
 version: 0.0.1
 maintainers:
   - name: Patricio Ascencio

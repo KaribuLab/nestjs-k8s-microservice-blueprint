@@ -1,19 +1,19 @@
-# {{service_name}}
+# {{.Inputs.service_name}}
 
 ## Install
 
 ```sh
-helm install {{service_name}} .
+helm install {{.Inputs.service_name}} ./helm
 ```
 
 ## Upgrade
 
 ```sh
-helm upgrade {{service_name}} . --set "requiredEnvVariable=${REQUIRED_ENV_VARIABLE}"
+helm upgrade {{.Inputs.service_name}} ./helm --set "requiredEnvVariable=${REQUIRED_ENV_VARIABLE}"
 ```
 
 ## Uninstall
 
 ```sh
-helm uninstall {{service_name}}
+helm uninstall {{.Inputs.service_name}}
 ```

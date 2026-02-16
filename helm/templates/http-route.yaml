@@ -8,7 +8,9 @@ spec:
   - kind: Gateway
     name: "{{ "{{ .Values.gatewayName }}" }}"
   hostnames:
-   {{ "{{ range \"{{ .Values.googleCloud.domains }}\" }}\n- \"{{ \"{{ . }}\" }}\"\n{{ end }}\n" }}
+    {{ "{{- range .Values.googleCloud.domains }}" }}
+    - {{ "{{ . | quote }}" }}
+    {{ "{{- end }}" }}
   rules:
   - matches:
     - path:

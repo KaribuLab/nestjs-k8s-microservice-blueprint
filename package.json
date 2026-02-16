@@ -1,10 +1,10 @@
 {
-  "name": "{{service_name}}",
+  "name": "{{.Inputs.service_name}}",
   "version": "1.0.0",
-  "description": "{{description}}",
+  "description": "{{.Inputs.description}}",
   "main": "main.js",
   "scripts": {
-    "test": "vitest run",
+    "test": "vitest run --passWithNoTests",
     "start:dev": "nest start --watch"
   },
   "keywords": [

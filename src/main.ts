@@ -27,7 +27,7 @@ async function bootstrap() {
   });
 
   await app.listen(process.env.APP_PORT ?? 3000, '0.0.0.0', function () {
-    logger.log(`{{service_name}} is running on port ${process.env.APP_PORT ?? 3000}`);
+    logger.log(`{{.Inputs.service_name}} is running on port ${process.env.APP_PORT ?? 3000}`);
   });
 }
 bootstrap();
