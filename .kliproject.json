@@ -153,6 +153,22 @@
     {
       "name": "Install pnpm dependencies",
       "command": "pnpm install"
+    },
+    {
+      "name": "Install NestJS microservices skill",
+      "command": "pnpx skills add KaribuLab/skills -y --skill nestjs-microservices"
+    },
+    {
+      "name": "Install Screaming Architecture skill",
+      "command": "pnpx skills add KaribuLab/skills -y --skill screaming-architecture"
+    },
+    {
+      "name": "Install Helm skill",
+      "command": "pnpx skills add KaribuLab/skills -y --skill helm-charts"
+    },
+    {
+      "name": "Install Owasp Security Check skill",
+      "command": "pnpx skills add sergiodxa/agent-skills -y --skill owasp-security-check"
     }
   ]
 }
