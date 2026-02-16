@@ -131,11 +131,6 @@
       "type": "string"
     },
     {
-      "name": "kubernetes_app",
-      "description": "Application name",
-      "type": "string"
-    },
-    {
       "name": "kubernetes_namespace",
       "description": "Kubernetes namespace",
       "type": "string"

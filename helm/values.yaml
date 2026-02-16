@@ -1,6 +1,6 @@
 namespace: {{.Inputs.kubernetes_namespace}}
 own: {{.Inputs.kubernetes_owner}}
-app: {{.Inputs.kubernetes_app}}
+app: {{.Inputs.service_name}}
 
 serviceName: {{.Inputs.service_name}}
 serviceAccountName: {{.Inputs.service_account_name}}
