@@ -93,8 +93,12 @@
           "destination": "Dockerfile"
         },
         {
-          "source": "README.md",
+          "source": "README-template.md",
           "destination": "README.md"
+        },
+        {
+          "source": "LICENSE",
+          "destination": "LICENSE"
         }
       ]
     }
