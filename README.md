@@ -7,7 +7,7 @@ A template to create microservices with NestJS + Fastify and a Helm chart for Ku
 - Node.js 20+
 - pnpm 10+
 - Helm 3+
-- Karibu CLI (`kli`)
+- Karibu CLI ([kli](https://github.com/KaribuLab/kli))
 
 ## Create a project from this template
 
