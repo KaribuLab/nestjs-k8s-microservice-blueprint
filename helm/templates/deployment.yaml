@@ -1,0 +1,83 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  namespace: {{ "{{ .Values.namespace }}" }}
+  name: {{ "{{ .Values.serviceName }}" }}
+  labels:
+    own: {{ "{{ quote .Values.own }}" }}
+    app: {{ "{{ quote .Values.app }}" }}
+    io.kompose.service: {{ "{{ quote .Values.serviceName }}" }}
+spec:
+  replicas: {{ "{{ .Values.minReplicas }}" }}
+  selector:
+    matchLabels:
+      own: {{ "{{ quote .Values.own }}" }}
+      app: {{ "{{ quote .Values.app }}" }}
+      io.kompose.service: {{ "{{ quote .Values.serviceName }}" }}
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 1
+  template:
+    metadata:
+      labels:
+        own: {{ "{{ quote .Values.own }}" }}
+        app: {{ "{{ quote .Values.app }}" }}
+        io.kompose.service: {{ "{{ quote .Values.serviceName }}" }}
+      annotations:
+        autoroll: {{ "{{ quote .Values.imageTag }}" }}
+    spec:
+      serviceAccountName: {{ "{{ .Values.serviceAccountName }}" }}
+      imagePullSecrets:
+        - name: secret-registry-containers
+      containers:
+        - image: "{{ "{{ .Values.imageName }}" }}:{{ "{{ .Values.imageTag }}" }}"
+          imagePullPolicy: Always
+          name: single
+          ports:
+            - containerPort: {{ "{{ .Values.port }}" }}
+          resources:
+            limits:
+              cpu: {{ "{{ quote .Values.limitCpu }}" }}
+              memory: {{ "{{ quote .Values.limitMem }}" }}
+            requests:
+              cpu: {{ "{{ quote .Values.requestCpu }}" }}
+              memory: {{ "{{ quote .Values.requestMem }}" }}
+          env:
+            - name: APP_PORT
+              valueFrom:
+                configMapKeyRef:
+                  name: config-{{ "{{ .Values.serviceName }}" }}
+                  key: APP_PORT
+            - name: REQUIRED_ENV_VARIABLE
+              valueFrom:
+                configMapKeyRef:
+                  name: config-{{ "{{ .Values.serviceName }}" }}
+                  key: REQUIRED_ENV_VARIABLE
+          startupProbe:
+            httpGet:
+              port: {{ "{{ .Values.port }}" }}
+              path: {{ "{{ .Values.probes.path }}" }}
+            failureThreshold: {{ "{{ .Values.probes.startup.failureThreshold }}" }}
+            periodSeconds: {{ "{{ .Values.probes.startup.periodSeconds }}" }} 
+            timeoutSeconds: {{ "{{ .Values.probes.startup.timeoutSeconds }}" }}
+          livenessProbe:
+            httpGet:
+              port: {{ "{{ .Values.port }}" }}
+              path: {{ "{{ .Values.probes.path }}" }}
+            initialDelaySeconds: {{ "{{ .Values.probes.liveness.initialDelaySeconds }}" }}
+            periodSeconds: {{ "{{ .Values.probes.liveness.periodSeconds }}" }}
+            failureThreshold: {{ "{{ .Values.probes.liveness.failureThreshold }}" }}
+            timeoutSeconds: {{ "{{ .Values.probes.liveness.timeoutSeconds }}" }}
+          readinessProbe:
+            httpGet:
+              port: {{ "{{ .Values.port }}" }}
+              path: {{ "{{ .Values.probes.path }}" }}
+            initialDelaySeconds: {{ "{{ .Values.probes.readiness.initialDelaySeconds }}" }} 
+            periodSeconds: {{ "{{ .Values.probes.readiness.periodSeconds }}" }}
+            successThreshold: {{ "{{ .Values.probes.readiness.successThreshold }}" }}
+            failureThreshold: {{ "{{ .Values.probes.readiness.failureThreshold }}" }}
+            timeoutSeconds: {{ "{{ .Values.probes.readiness.timeoutSeconds }}" }}
+      restartPolicy: Always
+status: {}

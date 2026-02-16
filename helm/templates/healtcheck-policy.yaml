@@ -1,0 +1,22 @@
+apiVersion: networking.gke.io/v1
+kind: HealthCheckPolicy
+metadata:
+  name: "{{ "{{ .Values.serviceName }}" }}-healthcheck"
+  namespace: {{ "{{ .Values.namespace }}" }}
+spec:
+  default:
+    checkIntervalSec: {{ "{{ .Values.healthCheckPolicy.checkIntervalSec }}" }}
+    timeoutSec: {{ "{{ .Values.healthCheckPolicy.timeoutSec }}" }}
+    healthyThreshold: {{ "{{ .Values.healthCheckPolicy.healthyThreshold }}" }}
+    unhealthyThreshold: {{ "{{ .Values.healthCheckPolicy.unhealthyThreshold }}" }}
+    logConfig:
+      enable: {{ "{{ .Values.healthCheckPolicy.logConfig.enable }}" }}
+    config:
+      type: HTTP
+      httpHealthCheck:
+        port: {{ "{{ .Values.port }}" }}
+        requestPath: {{ "{{ .Values.probes.path }}" }}
+  targetRef:
+    group: ""
+    kind: Service
+    name: {{ "{{ .Values.serviceName }}" }}

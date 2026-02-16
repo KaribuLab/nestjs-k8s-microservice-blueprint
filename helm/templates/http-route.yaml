@@ -1,0 +1,25 @@
+apiVersion: gateway.networking.k8s.io/v1beta1
+kind: HTTPRoute
+metadata:
+  name: "{{ "{{ .Values.serviceName }}" }}-http-route"
+  namespace: "{{ "{{ .Values.namespace }}" }}"
+spec:
+  parentRefs:
+  - kind: Gateway
+    name: "{{ "{{ .Values.gatewayName }}" }}"
+  hostnames:
+   {{ "{{ range \"{{ .Values.googleCloud.domains }}\" }}\n- \"{{ \"{{ . }}\" }}\"\n{{ end }}\n" }}
+  rules:
+  - matches:
+    - path:
+        type: PathPrefix
+        value: /{{ "{{ .Values.serviceName }}" }}
+    filters:
+      - type: URLRewrite
+        urlRewrite:
+          path:
+            type: ReplacePrefixMatch
+            replacePrefixMatch: /
+    backendRefs:
+    - name: {{ "{{ .Values.serviceName }}" }}
+      port: {{ "{{ .Values.port }}" }}

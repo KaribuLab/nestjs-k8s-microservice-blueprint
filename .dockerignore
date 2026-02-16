@@ -1,0 +1,8 @@
+dist
+helm
+node_modules
+seeders
+.env*
+.gitignore
+.prettierrc
+README.md

@@ -1,0 +1,8 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: config-{{ "{{.Values.serviceName}}" }}
+  namespace: {{ "{{.Values.namespace}}" }}
+data:
+  APP_PORT: {{ "{{.Values.port}}" | quote}}
+  REQUIRED_ENV_VARIABLE: {{ "{{.Values.requiredEnvVariable}}" | quote}}
