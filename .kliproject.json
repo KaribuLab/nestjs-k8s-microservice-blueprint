@@ -69,10 +69,6 @@
           "destination": "package.json"
         },
         {
-          "source": "pnpm-lock.yaml",
-          "destination": "pnpm-lock.yaml"
-        },
-        {
           "source": "tsconfig.json",
           "destination": "tsconfig.json"
         },
