@@ -165,6 +165,10 @@
     {
       "name": "Install Screaming Architecture skill",
       "command": "pnpx skills add KaribuLab/skills -y --skill screaming-architecture"
+    },
+    {
+      "name": "Install Helm skill",
+      "command": "pnpx skills add KaribuLab/skills -y --skill helm-charts"
     }
   ]
 }
